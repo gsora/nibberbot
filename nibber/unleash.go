@@ -9,6 +9,7 @@ var Emojis = map[string]string{
 	"a":       "\xF0\x9F\x85\xB0",
 	"o":       "\xF0\x9F\x85\xBE",
 	"p":       "\xF0\x9F\x85\xBF",
+	"m":       "\xE3\x80\xBD",
 	"ab":      "\xF0\x9F\x86\x8E",
 	"cl":      "\xF0\x9F\x86\x91",
 	"c":       "\xC2\xA9",
