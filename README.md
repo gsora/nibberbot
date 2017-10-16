@@ -18,6 +18,8 @@ Usage of nibberbot:
     	required, domain associated to the TLS cert+key and the server where this bot will be running
   -key string
     	required, TLS key path
+  -numspaces int
+    	number of spaces between each word (default 1)
   -port string
     	port to run on, must be 443, 80, 88, 8443 (default "88")
 ```
