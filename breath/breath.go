@@ -4,10 +4,12 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"time"
 )
 
 const (
-	baseURL = "http://gorthaur.biancalana.me/vaporfont"
+	baseURL          = "http://gorthaur.biancalana.me/vaporfont"
+	maxBreathingTime = 3
 )
 
 type BreatRequest struct {
@@ -17,7 +19,11 @@ type BreatRequest struct {
 func Breath(str string) (string, error) {
 	payload := url.Values{}
 	payload.Set("payload", str)
-	resp, err := http.PostForm(baseURL, payload)
+	timeout := time.Duration(maxBreathingTime * time.Second)
+	client := http.Client{
+		Timeout: timeout,
+	}
+	resp, err := client.PostForm(baseURL, payload)
 	if err != nil {
 		return "", err
 	}
