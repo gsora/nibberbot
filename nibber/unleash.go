@@ -62,5 +62,6 @@ var Emojis = map[string]string{
 	"ok":      "\xF0\x9F\x86\x97",
 	"nsfw":    "\xF0\x9F\x94\x9E",
 	"snek":    "\xF0\x9F\x90\x8D",
-	"leone": 	   "\xE2\x99\x8C",
+	"leone":   "\xE2\x99\x8C",
+	"shit":    "\xF0\x9F\x92\xA9",
 }
