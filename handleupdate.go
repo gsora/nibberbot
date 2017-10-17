@@ -15,9 +15,13 @@ func handleUpdate(update tgbotapi.Update, bot *tgbotapi.BotAPI) {
 		payload := []interface{}{}
 		memeStr := nibberInstance.Nibbering(update.InlineQuery.Query)
 		clappingMemeStr := strings.Replace(memeStr, " ", " "+nibber.Clap+" ", -1)
+		normalMemeString := memeStr
+		if numberOfSpaces > 1 {
+			normalMemeString = strings.Replace(memeStr, " ", fillingSpace, -1)
+		}
 
-		article := tgbotapi.NewInlineQueryResultArticle(update.InlineQuery.ID, suh, memeStr)
-		article.Description = memeStr
+		article := tgbotapi.NewInlineQueryResultArticle(update.InlineQuery.ID, suh, normalMemeString)
+		article.Description = normalMemeString
 		payload = append(payload, article)
 
 		clappingArticle := tgbotapi.NewInlineQueryResultArticle(update.InlineQuery.ID+"-clapping", clappingNibba, clappingMemeStr)

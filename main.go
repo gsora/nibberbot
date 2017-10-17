@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/go-telegram-bot-api/telegram-bot-api"
 	"github.com/gsora/nibberbot/nibber"
@@ -24,10 +25,16 @@ var (
 	debug          bool
 	domain         string
 	port           string
+	numberOfSpaces int
+	fillingSpace   string
 )
 
 func main() {
 	setupParams()
+
+	if !(numberOfSpaces <= 0 || numberOfSpaces == 1) {
+		generateSpaces()
+	}
 
 	nibberInstance = nibber.NewNibber(nibber.Emojis)
 
@@ -65,12 +72,17 @@ func setupParams() {
 	flag.StringVar(&domain, "domain", "", "required, domain associated to the TLS cert+key and the server where this bot will be running")
 	flag.StringVar(&port, "port", "88", "port to run on, must be 443, 80, 88, 8443")
 	flag.BoolVar(&debug, "debug", false, "debug Telegram bot interactions")
+	flag.IntVar(&numberOfSpaces, "numspaces", 1, "number of spaces between each word")
 	flag.Parse()
 
 	if certPath == "" || keyPath == "" || apiKey == "" || domain == "" {
 		flag.Usage()
 		os.Exit(1)
 	}
+}
+
+func generateSpaces() {
+	fillingSpace = strings.Repeat(" ", numberOfSpaces)
 }
 
 func startServer() {
